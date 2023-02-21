@@ -5,8 +5,7 @@ from middleware.transformer import Transformer
 def job():
     print('Rotina Robô - ETL Inicializado')
     print('Extraindo dados')
-    resp = Extractor('20230217113892')
-    print(resp)
+    Extractor('20230217113892')
 
 
 if __name__ == "__main__":
