@@ -1,0 +1,11 @@
+version: '3'
+
+# networks:
+#   xp:
+#     driver: bridge
+
+services:
+  api:
+    build: api
+    ports:
+      - 2202:2202
