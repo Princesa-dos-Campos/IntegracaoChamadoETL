@@ -26,7 +26,6 @@ class Extractor:
                     # print(chamado)
                     lista.append(chamado)
                 cont += 1
-            print('fim while')
             # print(lista)
             Handler(lista)
         except Exception as e:
