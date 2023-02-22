@@ -1,22 +1,62 @@
-from middleware.extractor import Extractor
+import requests as req
+from requests.auth import HTTPBasicAuth
+import pandas as pd
 
 class Handler:
-    """Classe para navegar pelos dados em json vindos da classe BuscaChamado, fazendo a busca pelo chamado correspondente pelo
-    campo 'tipo_chamado'. Chama classe Extractor.
-       Return: Número do chamado ('numero')
-    """
-    def __init__(self, data, total_chamados):
-        self.data = data
-        self.total_chamados = total_chamados
-        self.search()
+    def __init__(self, lista):
+        self.username = 'integracao@princesadoscampos.com.br'
+        self.password = '12345678'
+        self.lista = lista
+        # print(self.lista)
+        # self.endpoint = f'https://csc.princesadoscampos.wtmh.com.br/integracao/chamado/{self.chamado}'
+        self.headers = {
+            'Content-Type': 'application/json',
+            'wtmh':'true'
+        }
+        self.execute()
 
-    def search(self):
-        print('Consultando Caixa de Entrada...')
-        cont = 0
-        lista = []
-        while(cont < self.total_chamados):
-            if(self.data[cont]['tipo_chamado'] == 'TI.072 - Desenvolvimento robôs'):
-                chamado = self.data[cont]['numero']
-                lista.append(chamado)
-            cont += 1
-        Extractor(lista)
+
+    def execute(self):
+        try:
+            dados_ = []
+            for chamado in self.lista:
+                print('Manipulando dados do chamado: ',chamado)
+                dados = []
+                endpoint = f'https://csc.princesadoscampos.wtmh.com.br/integracao/chamado/{chamado}'
+                data = req.get(url=endpoint, headers=self.headers, auth=HTTPBasicAuth(self.username, self.password)).json()
+                tipo = data['tipo']
+                etapa = data['etapa']
+                categoria = data['categoria']
+                empresa = data['empresa']
+                requerente = data['requerente']
+                email = data['email_requerente']
+                responsavel = data['responsavel']
+                aprovador = data['aprovador']
+                chamado = data['numero']
+                andamento = data['andamento']
+                titulo = data['titulo']
+                form = data['form']['jsons'][1]['fields'][0]['field_options']['data']
+                dados.append(tipo)
+                dados.append(etapa)
+                dados.append(categoria)
+                dados.append(empresa)
+                dados.append(requerente)
+                dados.append(email)
+                dados.append(responsavel)
+                dados.append(aprovador)
+                dados.append(chamado)
+                dados.append(andamento)
+                dados.append(titulo)
+                dados.append(form)
+
+                dados.append(dados)
+                dados_.append(dados)
+            dados_ = pd.DataFrame(dados_)
+            print('Criando CSV...')
+            dados_.to_csv('Chamado.csv', index=False, sep=';', encoding='ISO8859-1')
+            print('CSV criado')
+        except Exception as e:
+            return ('Erro na manipulação de dados...' + str(e))
+
+
+

@@ -1,6 +1,6 @@
 import requests as req
 from requests.auth import HTTPBasicAuth
-from middleware.handler import Handler
+from middleware.extractor import Extractor
 
 class BuscaChamado:
     """ Classe para fazer conexão com a API (Consulta caixa de entrada), com email do usuário. Chama classe Handler.
@@ -23,15 +23,14 @@ class BuscaChamado:
         self.execute()
 
     def execute(self):
-        print('Busca de Chamado')
+        print('Iniciando')
         try:
             data = req.post(url=self.endpoint, headers=self.headers, json=self.body, auth=HTTPBasicAuth(self.username, self.pwd)).json()
-            # Handler(data)
-            # print('antes print')
             total_chamados = data['total_chamados'] #(-1)
             data = data['chamados_encontrados']
+            # print(data)
             # print(data[6]['tipo_chamado'])
             # print(total_chamados)
-            Handler(data, total_chamados)
+            Extractor(data, total_chamados)
         except Exception as e:
             return ('Erro' + str(e))
