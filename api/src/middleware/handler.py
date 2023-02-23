@@ -51,13 +51,13 @@ class Handler:
                 dados.append(form)
 
                 dados_.append(dados)
-
+            # print(dados_)
             dados_ = pd.DataFrame(dados_, columns=['tipo', 'etapa','categoria', 'empresa', 'requerente', 'email', 'responsavel',
                                                     'aprovador', 'chamado','andamento','titulo', 'dados'])
-            # print(dados_)
             print('Criando CSV...')
             dados_.to_csv('Chamado.csv', index=False, sep=';', encoding='ISO8859-1')
             print('CSV criado')
+            print(dados_)
             AbrirChamado(dados_)
         except Exception as e:
             print('Erro na manipulação de dados...' + str(e))

@@ -9,7 +9,6 @@ class BuscaChamado:
 
     def __init__(self):
         self.username = 'integracao@princesadoscampos.com.br'
-        
         self.pwd = '12345678'
         self.email = 'gustavo.trudes@princesadoscampos.com.br'
         self.endpoint = 'https://csc.princesadoscampos.wtmh.com.br/integracao/workflow/entrada'
