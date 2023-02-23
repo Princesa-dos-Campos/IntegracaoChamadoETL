@@ -1,7 +1,7 @@
 import requests as req
 from requests.auth import HTTPBasicAuth
 import pandas as pd
-from chamados.abrir_chamado import AbrirChamado
+from chamados.captura_formulario import CapturaFormulario
 
 class Handler:
     def __init__(self, lista):
@@ -57,8 +57,7 @@ class Handler:
             print('Criando CSV...')
             dados_.to_csv('Chamado.csv', index=False, sep=';', encoding='ISO8859-1')
             print('CSV criado')
-            print(dados_)
-            AbrirChamado(dados_)
+            CapturaFormulario(dados_)
         except Exception as e:
             print('Erro na manipulação de dados...' + str(e))
 

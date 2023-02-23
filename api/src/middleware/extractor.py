@@ -8,8 +8,6 @@ class Extractor:
     def __init__(self, data, total_chamados):
         self.data = data
         self.total_chamados = total_chamados
-        # print(self.total_chamados)
-        # print(self.data)
         self.search()
 
     def search(self):
@@ -17,9 +15,9 @@ class Extractor:
             print('Extraindo chamados da caixa de entrada...')
             cont = 0
             lista = []
-            # print(self.data[2]['tipo_chamado'])
+            # print(self.total_chamados) ok
             while(cont < self.total_chamados):
-                # print('entrou while')
+                # print('entrou while') OK
                 # print(self.data[cont]['tipo_chamado'])
                 if(self.data[cont]['fluxo_chamado'] == 'TI.072.2 - Disparo robo'):
                     print(self.data[cont]['tipo_chamado'])
@@ -27,7 +25,7 @@ class Extractor:
                     print(chamado)
                     lista.append(chamado)
                 cont += 1
-            print(lista)
+            # print(lista)
             print('fim do while')
             Handler(lista)
         except Exception as e:
