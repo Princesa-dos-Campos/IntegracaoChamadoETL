@@ -5,11 +5,9 @@ from chamados.captura_formulario import CapturaFormulario
 
 class Handler:
     def __init__(self, lista):
-        self.username = 'integracao@princesadoscampos.com.br'
+        self.username = 'robo.dataentry@princesadoscampos.com.br'
         self.password = '12345678'
         self.lista = lista
-        # print(self.lista)
-        # self.endpoint = f'https://csc.princesadoscampos.wtmh.com.br/integracao/chamado/{self.chamado}'
         self.headers = {
             'Content-Type': 'application/json',
             'wtmh':'true'
@@ -19,12 +17,17 @@ class Handler:
 
     def execute(self):
         try:
+            id =0
             dados_ = []
+            form_ = []
+            print("lista", self.lista)
             for chamado in self.lista:
                 print('Manipulando dados do chamado: ',chamado)
                 dados = []
+                form=[]
                 endpoint = f'https://csc.princesadoscampos.wtmh.com.br/integracao/chamado/{chamado}'
                 data = req.get(url=endpoint, headers=self.headers, auth=HTTPBasicAuth(self.username, self.password)).json()
+                id +=1
                 tipo = data['tipo']
                 etapa = data['etapa']
                 categoria = data['categoria']
@@ -36,7 +39,10 @@ class Handler:
                 chamado = data['numero']
                 andamento = data['andamento']
                 titulo = data['titulo']
-                form = data['form']['jsons'][1]['fields'][0]['field_options']['data']
+                # form = data['form']['jsons'][0]['fields'][0]['field_options']['data']
+                formulario = data['form']['jsons'][0]['fields'][6]['field_options']['data']
+
+                dados.append(id)
                 dados.append(tipo)
                 dados.append(etapa)
                 dados.append(categoria)
@@ -48,16 +54,21 @@ class Handler:
                 dados.append(chamado)
                 dados.append(andamento)
                 dados.append(titulo)
-                dados.append(form)
 
+                form.append(id)
+                form.append(formulario)
+
+                form_.append(form)
                 dados_.append(dados)
-            # print(dados_)
-            dados_ = pd.DataFrame(dados_, columns=['tipo', 'etapa','categoria', 'empresa', 'requerente', 'email', 'responsavel',
-                                                    'aprovador', 'chamado','andamento','titulo', 'dados'])
+
+            form_ = pd.DataFrame(form_, columns=['id','dados'])
+            dados_ = pd.DataFrame(dados_, columns=['id','tipo', 'etapa','categoria', 'empresa', 'requerente', 'email', 'responsavel',
+                                                    'aprovador', 'chamado','andamento','titulo'])
             print('Criando CSV...')
-            dados_.to_csv('Chamado.csv', index=False, sep=';', encoding='ISO8859-1')
+            dados_.to_csv('Chamado.csv', index=True, sep=';', encoding='ISO8859-1')
+            form_.to_csv('Dados.csv', index=True, sep= ';', encoding='ISO8859-1')
             print('CSV criado')
-            CapturaFormulario(dados_)
+            CapturaFormulario(dados_, form_)
         except Exception as e:
             print('Erro na manipulação de dados...' + str(e))
 

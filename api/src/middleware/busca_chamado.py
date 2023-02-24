@@ -8,16 +8,16 @@ class BuscaChamado:
     """
 
     def __init__(self):
-        self.username = 'integracao@princesadoscampos.com.br'
+        self.username = 'robo.dataentry@princesadoscampos.com.br'
         self.pwd = '12345678'
-        self.email = 'gustavo.trudes@princesadoscampos.com.br'
+        self.email = 'robo.dataentry@princesadoscampos.com.br'
         self.endpoint = 'https://csc.princesadoscampos.wtmh.com.br/integracao/workflow/entrada'
         self.headers = {
             'Content-Type': 'application/json',
             'wtmh': 'true'
         }
         self.body = {
-            "usuario_email": "gustavo.trudes@princesadoscampos.com.br",
+            "usuario_email": "robo.dataentry@princesadoscampos.com.br",
             "page": 0
         }
         self.execute()
@@ -25,10 +25,10 @@ class BuscaChamado:
     def execute(self):
         print('Iniciando')
         try:
-            data = req.post(url=self.endpoint, headers=self.headers, json=self.body, auth=HTTPBasicAuth(self.username, self.pwd)).json()
+            # print('try')
+            data = req.get(url=self.endpoint, headers=self.headers, json=self.body, auth=HTTPBasicAuth(self.username, self.pwd)).json()
             total_chamados = data['total_chamados'] #(-1)
             data = data['chamados_encontrados']
-            # print(data)
             # print(data[6]['tipo_chamado'])
             # print(total_chamados)
             Extractor(data, total_chamados)
