@@ -1,3 +1,2 @@
-;id;tipo;etapa;categoria;empresa;requerente;email;responsavel;aprovador;chamado;andamento;titulo
-0;1;TI.072 - Desenvolvimento robôs;TI.072.2 - Disparo robo;;EPC-ADM-MATRIZ-PR;MARIANA LACERDA BORGES;mariana.borges@princesadoscampos.com.br;ROBO DATA ENTRY;;20230224117097;Pendente;novo teste
-1;2;TI.072 - Desenvolvimento robôs;TI.072.2 - Disparo robo;;EPC-ADM-MATRIZ-PR;MARIANA LACERDA BORGES;mariana.borges@princesadoscampos.com.br;ROBO DATA ENTRY;;20230224117165;Pendente;teste a
+;tipo;etapa;categoria;empresa;requerente;email;responsavel;aprovador;chamado;andamento;titulo;dados
+0;TI.072 - Desenvolvimento robôs;TI.072.2 - Disparo robo;;EPC-ADM-MATRIZ-PR;MARIANA LACERDA BORGES;mariana.borges@princesadoscampos.com.br;ROBO DATA ENTRY;;20230224117165;Pendente;teste a;[['789', '456', '2', 'R$ 0'], ['1', '2', '3', 'R$ 0'], ['4', '5', '6', 'R$ 0']]

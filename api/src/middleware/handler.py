@@ -19,7 +19,6 @@ class Handler:
         try:
             id =0
             dados_ = []
-            form_ = []
             print("lista", self.lista)
             for chamado in self.lista:
                 print('Manipulando dados do chamado: ',chamado)
@@ -42,7 +41,6 @@ class Handler:
                 # form = data['form']['jsons'][0]['fields'][0]['field_options']['data']
                 formulario = data['form']['jsons'][0]['fields'][6]['field_options']['data']
 
-                dados.append(id)
                 dados.append(tipo)
                 dados.append(etapa)
                 dados.append(categoria)
@@ -54,21 +52,16 @@ class Handler:
                 dados.append(chamado)
                 dados.append(andamento)
                 dados.append(titulo)
+                dados.append(formulario)
 
-                form.append(id)
-                form.append(formulario)
-
-                form_.append(form)
                 dados_.append(dados)
 
-            form_ = pd.DataFrame(form_, columns=['id','dados'])
-            dados_ = pd.DataFrame(dados_, columns=['id','tipo', 'etapa','categoria', 'empresa', 'requerente', 'email', 'responsavel',
-                                                    'aprovador', 'chamado','andamento','titulo'])
+            dados_ = pd.DataFrame(dados_, columns=['tipo', 'etapa','categoria', 'empresa', 'requerente', 'email', 'responsavel',
+                                                    'aprovador', 'chamado','andamento','titulo', 'dados'])
             print('Criando CSV...')
             dados_.to_csv('Chamado.csv', index=True, sep=';', encoding='ISO8859-1')
-            form_.to_csv('Dados.csv', index=True, sep= ';', encoding='ISO8859-1')
             print('CSV criado')
-            CapturaFormulario(dados_, form_)
+            CapturaFormulario(dados_)
         except Exception as e:
             print('Erro na manipulação de dados...' + str(e))
 

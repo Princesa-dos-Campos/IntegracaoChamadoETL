@@ -1,47 +1,60 @@
+from chamados.abrir_chamado import AbrirChamado
 import pandas as pd
+import numpy as np
 
 class CapturaFormulario:
-    def __init__(self,dados, form):
+    def __init__(self,dados):
         # self.dados = pd.read_csv('chamados/Chamado.csv', encoding='ISO8859-1', sep=';')
-        self.dados = dados
-        self.form = form
+        self.df = dados
         self.teste_form()
-        # self.separar_dados()
+
+
+    def tentativa(self, chamado, titulo, empresa, requerente, andamento, responsavel, etapa, email, i):
+        print('Entrou em tentativa...')
+        nova_lista =[]
+        lista_=[]
+        nova_lista.append(chamado)
+        nova_lista.append(titulo)
+        nova_lista.append(empresa)
+        nova_lista.append(requerente)
+        nova_lista.append(andamento)
+        nova_lista.append(responsavel)
+        nova_lista.append(etapa)
+        nova_lista.append(email)
+        nova_lista.append(i)
+        #envia nova lista p abrir chamado
+        lista_.append(nova_lista)
+        # print(lista_[0])
+        df_chamado = pd.DataFrame(lista_, columns=['chamado', 'titulo', 'empresa', 'requerente', 'andamento', 'responsavel','etapa',
+                                                        'email', 'dados'])
+        # print(df_chamado)
+        # df_chamado.to_csv(f'{chamado}.csv')
+        AbrirChamado(df_chamado)
+
 
 
     def teste_form(self):
-        for ele in self.form:
-            for id in self.form['id']:
-                id_form = id
-                for i in self.form['dados']:
-                    ultimo = i[-1]
-                    print("Ultimo:", ultimo)
-                    for j in i:
-                        print(j)
-                        if j == ultimo:
-                            print("igual ",id_form)
-
-
-
-
-
-
-    def separar_dados(self):
         try:
-            for i in self.form['dados']:
-                flag  = 0
-                for j in i:
-                    ultimo_elemento = j[ -1]
-                    for k in j:
-                        if k == ultimo_elemento:
-                            flag = 1
-                            linha = j
-                            print(linha)
-                            print('ultimo: ', flag)
-                if flag == 1:
-                    break
+            tam = len(self.df)-1 #pegou quantidade de linhas do df
+            while(tam>=0):
+                # print(chamado,': ')
+                for i in self.df['dados'][tam]:
+                    etapa = str(self.df.iloc[tam]['etapa'])
+                    chamado = str(self.df.iloc[tam]['chamado'])
+                    empresa = str(self.df.iloc[tam]['empresa'])
+                    requerente = str(self.df.iloc[tam]['requerente'])
+                    titulo = str(self.df.iloc[tam]['titulo'])
+                    andamento = str(self.df.iloc[tam]['andamento'])
+                    responsavel = str(self.df.iloc[tam]['responsavel'])
+                    email = str(self.df.iloc[tam]['email'])
+
+                    self.tentativa(chamado, titulo, empresa, requerente, andamento, responsavel, etapa, email, i)
+                tam-=1
+            # print('Informações: ')
+            # print(info)
         except Exception as e:
-            print('Erro na captura do formulário...',e)
+            print('Erro de captura...', e)
+
 
     # def separar_dados(self):
     #     """Separa linhas de chamado da string

@@ -138,11 +138,11 @@ def integracao_wtmh():
         dados.append(natureza)
         dados.append(filial)
         dados.append(centro_custo)
-        
+
         mensagem = 'Favor incluir título no contas a pagar, CTE: '+cte+', Cod Fornecedor: '+cod_fornecedor+', Loja: '+loja+', '+nome_fornecedor+', Vencimento: '+vencimento+', Parcela: '+parcela+', Natureza: '+natureza+', Filial: '+filial+', Centro de Custo: '+centro_custo +', Valor: R$ '+valor_       
-        
+
         #print(mensagem)
-      
+
         body = {
             "tipo_chamado": "CR.054 - Conferencia de ficha de remessa",
             "empresa_relacionada": "EPC-ADM-MATRIZ-PR",
