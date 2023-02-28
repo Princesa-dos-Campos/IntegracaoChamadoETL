@@ -1,6 +1,6 @@
-,etapa,chamado,empresa,requerente,titulo,andamento,responsavel,email,dados
-0,TI.072.2 - Disparo robo,20230228118685,EPC-ADM-MATRIZ-PR,MARIANA LACERDA BORGES,novo 2,Pendente,ROBO DATA ENTRY,mariana.borges@princesadoscampos.com.br,"['4', '4', '3', 'R$ 0']"
-1,TI.072.2 - Disparo robo,20230228118685,EPC-ADM-MATRIZ-PR,MARIANA LACERDA BORGES,novo 2,Pendente,ROBO DATA ENTRY,mariana.borges@princesadoscampos.com.br,"['2', '5', '7', 'R$ 0']"
-2,TI.072.2 - Disparo robo,20230228118685,EPC-ADM-MATRIZ-PR,MARIANA LACERDA BORGES,novo 2,Pendente,ROBO DATA ENTRY,mariana.borges@princesadoscampos.com.br,"['456', '456', '78', 'R$ 0']"
-3,TI.072.2 - Disparo robo,20230228118678,EPC-ADM-MATRIZ-PR,MARIANA LACERDA BORGES,novo 1,Pendente,ROBO DATA ENTRY,mariana.borges@princesadoscampos.com.br,"['123', '456', '789', 'R$ 0']"
-4,TI.072.2 - Disparo robo,20230228118678,EPC-ADM-MATRIZ-PR,MARIANA LACERDA BORGES,novo 1,Pendente,ROBO DATA ENTRY,mariana.borges@princesadoscampos.com.br,"['789', '456', '123', 'R$ 0']"
+;etapa;chamado;empresa;requerente;titulo;andamento;responsavel;email;dados
+0;TI.072.2 - Disparo robo;20230228118685;EPC-ADM-MATRIZ-PR;MARIANA LACERDA BORGES;novo 2;Pendente;ROBO DATA ENTRY;mariana.borges@princesadoscampos.com.br;['4', '4', '3', 'R$ 0']
+1;TI.072.2 - Disparo robo;20230228118685;EPC-ADM-MATRIZ-PR;MARIANA LACERDA BORGES;novo 2;Pendente;ROBO DATA ENTRY;mariana.borges@princesadoscampos.com.br;['2', '5', '7', 'R$ 0']
+2;TI.072.2 - Disparo robo;20230228118685;EPC-ADM-MATRIZ-PR;MARIANA LACERDA BORGES;novo 2;Pendente;ROBO DATA ENTRY;mariana.borges@princesadoscampos.com.br;['456', '456', '78', 'R$ 0']
+3;TI.072.2 - Disparo robo;20230228118678;EPC-ADM-MATRIZ-PR;MARIANA LACERDA BORGES;novo 1;Pendente;ROBO DATA ENTRY;mariana.borges@princesadoscampos.com.br;['123', '456', '789', 'R$ 0']
+4;TI.072.2 - Disparo robo;20230228118678;EPC-ADM-MATRIZ-PR;MARIANA LACERDA BORGES;novo 1;Pendente;ROBO DATA ENTRY;mariana.borges@princesadoscampos.com.br;['789', '456', '123', 'R$ 0']

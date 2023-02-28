@@ -23,14 +23,12 @@ class BuscaChamado:
         self.execute()
 
     def execute(self):
-        print('Iniciando')
+        print('Busca de chamado iniciada...')
         try:
             # print('try')
             data = req.get(url=self.endpoint, headers=self.headers, json=self.body, auth=HTTPBasicAuth(self.username, self.pwd)).json()
             total_chamados = data['total_chamados'] #(-1)
             data = data['chamados_encontrados']
-            # print(data[6]['tipo_chamado'])
-            # print(total_chamados)
             Extractor(data, total_chamados)
         except Exception as e:
-            return ('Erro' + str(e))
+            return ('Erro na busca...' + str(e))

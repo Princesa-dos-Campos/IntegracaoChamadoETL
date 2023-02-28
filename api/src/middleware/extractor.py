@@ -18,11 +18,8 @@ class Extractor:
             while(cont < self.total_chamados):
                 if(self.data[cont]['fluxo_chamado'] == 'TI.072.2 - Disparo robo'):
                     chamado = self.data[cont]['numero']
-                    # print(chamado)
                     lista.append(chamado)
                 cont += 1
-            # print(lista)
-            # print('fim do while')
             Handler(lista)
         except Exception as e:
             print('Erro na extração de chamado...' + str(e))

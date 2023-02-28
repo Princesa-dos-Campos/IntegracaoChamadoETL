@@ -1,6 +1,5 @@
 from chamados.testa_chamado import TestaChamado
 import pandas as pd
-import numpy as np
 
 class CapturaFormulario:
     def __init__(self,dados):
@@ -9,7 +8,6 @@ class CapturaFormulario:
 
     def teste_form(self):
         try:
-            nova_lista=[]
             lista_=[]
             r = 0
             tam = len(self.df)-1 #pegou quantidade de linhas do df
@@ -28,7 +26,7 @@ class CapturaFormulario:
                 tam-=1
             df = pd.DataFrame(lista_, columns=['etapa', 'chamado', 'empresa', 'requerente', 'titulo', 'andamento', 'responsavel', 'email',
                                                'dados'])
-            df.to_csv('nova_lista.csv', sep=',')
+            df.to_csv('nova_lista.csv', sep=';', encoding="ISO-8859-1")
             TestaChamado(df)
         except Exception as e:
             print('Erro de captura...', e)

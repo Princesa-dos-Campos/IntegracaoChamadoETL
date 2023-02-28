@@ -17,16 +17,14 @@ class Handler:
 
     def execute(self):
         try:
-            id =0
             dados_ = []
             print("lista", self.lista)
             for chamado in self.lista:
                 print('Manipulando dados do chamado: ',chamado)
                 dados = []
-                form=[]
                 endpoint = f'https://csc.princesadoscampos.wtmh.com.br/integracao/chamado/{chamado}'
                 data = req.get(url=endpoint, headers=self.headers, auth=HTTPBasicAuth(self.username, self.password)).json()
-                id +=1
+
                 tipo = data['tipo']
                 etapa = data['etapa']
                 categoria = data['categoria']
@@ -38,7 +36,6 @@ class Handler:
                 chamado = data['numero']
                 andamento = data['andamento']
                 titulo = data['titulo']
-                # form = data['form']['jsons'][0]['fields'][0]['field_options']['data']
                 formulario = data['form']['jsons'][0]['fields'][6]['field_options']['data']
 
                 dados.append(tipo)

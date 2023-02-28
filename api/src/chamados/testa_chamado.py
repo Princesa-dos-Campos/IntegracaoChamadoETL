@@ -46,37 +46,6 @@ class TestaChamado:
                 "mensagem": mensagem
             }
 
-
-
-
-
-
-
-
-
-    # def integracao_chamado(self):
-    #     try:
-    #         dados = []
-    #         endpoint = 'https://csc.princesadoscampos.wtmh.com.br/integracao/chamado'
-    #         mensagem = "Dados:"+str(dados)
-    #         body ={
-    #             "acao":"atender",
-    #             "numero": self.df['chamado'],
-    #             "mensagem": mensagem
-    #         }
-    #         body = json.dumps(body)
-    #         resp = req.put(url = endpoint,headers=self.headers,data = body,auth = HTTPBasicAuth(self.username, self.pwd))
-    #         retorno = resp.json()
-    #         print(retorno)
-    #             # abrir(self.df)
-    #     except Exception as e:
-    #         mensagem = "Dados inválidos"
-    #         body={
-    #             "acao":"retorno",
-    #             "numero":self.df['chamado'],
-    #             "mensagem": mensagem
-    #         }
-    #         print('Dados invalidos...', e)
             #cria dados p retorno caso tenha algum campo vazio
             #deu certo porem o msm chamado n pode ser atendido mais de uma vez
             #testar aqui se vai ser possivel atender ou nao (campos vazios), se for possivel ai sim encaminha p abrir o chamado
