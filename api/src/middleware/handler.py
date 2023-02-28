@@ -64,6 +64,3 @@ class Handler:
             CapturaFormulario(dados_)
         except Exception as e:
             print('Erro na manipulação de dados...' + str(e))
-
-
-
