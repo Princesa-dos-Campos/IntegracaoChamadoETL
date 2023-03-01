@@ -29,6 +29,7 @@ class BuscaChamado:
             data = req.get(url=self.endpoint, headers=self.headers, json=self.body, auth=HTTPBasicAuth(self.username, self.pwd)).json()
             total_chamados = data['total_chamados'] #(-1)
             data = data['chamados_encontrados']
+            # print(data)
             Extractor(data, total_chamados)
         except Exception as e:
             return ('Erro na busca...' + str(e))

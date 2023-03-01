@@ -4,6 +4,7 @@ import pandas as pd
 class CapturaFormulario:
     def __init__(self,dados):
         self.df = dados
+        # print(self.df)
         self.teste_form()
 
     def teste_form(self):
@@ -12,7 +13,7 @@ class CapturaFormulario:
             r = 0
             tam = len(self.df)-1 #pegou quantidade de linhas do df
             while(tam>=0):
-                for i in self.df['dados'][tam]:
+                for i in self.df['formulario'][tam]:
                     etapa = str(self.df.iloc[tam]['etapa'])
                     chamado = str(self.df.iloc[tam]['chamado'])
                     empresa = str(self.df.iloc[tam]['empresa'])
@@ -25,8 +26,9 @@ class CapturaFormulario:
                     lista_.append([etapa, chamado, empresa, requerente, titulo, andamento, responsavel, email, i])
                 tam-=1
             df = pd.DataFrame(lista_, columns=['etapa', 'chamado', 'empresa', 'requerente', 'titulo', 'andamento', 'responsavel', 'email',
-                                               'dados'])
+                                               'formulario'])
             df.to_csv('nova_lista.csv', sep=';', encoding="ISO-8859-1")
+            # print(df)
             TestaChamado(df)
         except Exception as e:
             print('Erro de captura...', e)

@@ -1,6 +1,7 @@
 import json
 import requests as req
 from requests.auth import HTTPBasicAuth
+from log import Log
 
 class AbreChamado():
     def __init__(self, dados):
@@ -33,6 +34,7 @@ class AbreChamado():
                 resp = req.post(url = self.endpoint, headers= self.headers, data= body, auth=HTTPBasicAuth(self.username, self.password))
                 retorno = resp.json()
                 print(retorno)
+                Log()
                 # chamado_novo = str(retorno['numero'])
                 tam-=1
         except Exception as e:

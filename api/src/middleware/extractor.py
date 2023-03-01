@@ -16,10 +16,11 @@ class Extractor:
             cont = 0
             lista = []
             while(cont < self.total_chamados):
-                if(self.data[cont]['fluxo_chamado'] == 'TI.072.2 - Disparo robo'):
+                if(self.data[cont]['fluxo_chamado'] == 'TI.074.2 - Disparo robo'):
                     chamado = self.data[cont]['numero']
                     lista.append(chamado)
                 cont += 1
+            # print(lista)
             Handler(lista)
         except Exception as e:
             print('Erro na extração de chamado...' + str(e))

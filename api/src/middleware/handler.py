@@ -27,7 +27,6 @@ class Handler:
 
                 tipo = data['tipo']
                 etapa = data['etapa']
-                categoria = data['categoria']
                 empresa = data['empresa']
                 requerente = data['requerente']
                 email = data['email_requerente']
@@ -36,11 +35,10 @@ class Handler:
                 chamado = data['numero']
                 andamento = data['andamento']
                 titulo = data['titulo']
-                formulario = data['form']['jsons'][0]['fields'][6]['field_options']['data']
+                formulario = data['form']['jsons'][0]['fields'][0]['field_options']['data']
 
                 dados.append(tipo)
                 dados.append(etapa)
-                dados.append(categoria)
                 dados.append(empresa)
                 dados.append(requerente)
                 dados.append(email)
@@ -53,11 +51,12 @@ class Handler:
 
                 dados_.append(dados)
 
-            dados_ = pd.DataFrame(dados_, columns=['tipo', 'etapa','categoria', 'empresa', 'requerente', 'email', 'responsavel',
-                                                    'aprovador', 'chamado','andamento','titulo', 'dados'])
+            dados_ = pd.DataFrame(dados_, columns=['tipo', 'etapa', 'empresa', 'requerente', 'email', 'responsavel', 'aprovador',
+                                                   'chamado','andamento','titulo', 'formulario'])
             print('Criando CSV...')
             dados_.to_csv('Chamado.csv', index=True, sep=';', encoding='ISO8859-1')
             print('CSV criado')
+            # print(dados_)
             CapturaFormulario(dados_)
         except Exception as e:
             print('Erro na manipulação de dados...' + str(e))

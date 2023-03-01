@@ -3,6 +3,7 @@ import requests as req
 from requests.auth import HTTPBasicAuth
 import pandas as pd
 from chamados.abre_chamado import AbreChamado
+from chamados.teste_extracao import TesteExtracao
 
 class TestaChamado:
     def __init__(self, dados_chamado):
@@ -23,20 +24,23 @@ class TestaChamado:
     def integracao_chamado(self):
         try:
             tam = len(self.df)-1
+            # print(tam, self.df['chamado'])
             while tam >=0:
                 # self.df['dados'][tam]
-                mensagem = 'Dados: '+self.df['dados'][tam]
+                mensagem = 'Formulário: '+self.df['formulario'][tam]
                 body = {
                     'acao': 'atender',
                     'numero': self.df['chamado'][tam],
                     'mensagem': mensagem
                 }
+                # print(mensagem)
                 body = json.dumps(body)
                 tam-=1
                 resp = req.put(url = self.endpoint,headers=self.headers,data = body,auth = HTTPBasicAuth(self.username, self.pwd))
                 retorno = resp.json()
                 print(retorno)
-            AbreChamado(self.df)
+            TesteExtracao(self.df)
+            # AbreChamado(self.df)
         except Exception as e:
             print('dados invalidos...',e)
             mensagem = "Dados inválidos"
