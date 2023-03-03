@@ -4,6 +4,9 @@ from requests.auth import HTTPBasicAuth
 from log import Log
 
 class AbreChamado():
+    """Classe feita para abrir o chamado com os dados do formulário
+    return: json com resposta do método de conexão da API
+    """
     def __init__(self, dados):
         self.df = dados
         self.username = 'integracao@princesadoscampos.com.br'

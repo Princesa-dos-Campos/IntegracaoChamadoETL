@@ -6,6 +6,8 @@ from chamados.abre_chamado import AbreChamado
 from chamados.teste_extracao import TesteExtracao
 
 class TestaChamado:
+    """Testa os dados vindos da caixa de entrada para abrir o chamado
+    """
     def __init__(self, dados_chamado):
         self.df = pd.DataFrame(dados_chamado)
         self.endpoint = 'https://csc.princesadoscampos.wtmh.com.br/integracao/chamado'
@@ -47,7 +49,3 @@ class TestaChamado:
                 "numero":self.df['chamado'],
                 "mensagem": mensagem
             }
-
-            #cria dados p retorno caso tenha algum campo vazio
-            #deu certo porem o msm chamado n pode ser atendido mais de uma vez
-            #testar aqui se vai ser possivel atender ou nao (campos vazios), se for possivel ai sim encaminha p abrir o chamado

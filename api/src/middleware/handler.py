@@ -1,9 +1,12 @@
 import requests as req
 from requests.auth import HTTPBasicAuth
 import pandas as pd
-from chamados.captura_formulario import CapturaFormulario
+from chamados.captura_chamado import CapturaChamado
 
 class Handler:
+    """
+    Manipula os dados vindos da API
+    """
     def __init__(self, lista):
         self.username = 'robo.dataentry@princesadoscampos.com.br'
         self.password = '12345678'
@@ -57,6 +60,6 @@ class Handler:
             dados_.to_csv('Chamado.csv', index=True, sep=';', encoding='ISO8859-1')
             print('CSV criado')
             # print(dados_)
-            CapturaFormulario(dados_)
+            CapturaChamado(dados_)
         except Exception as e:
             print('Erro na manipulação de dados...' + str(e))

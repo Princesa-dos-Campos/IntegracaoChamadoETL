@@ -1,7 +1,11 @@
 from chamados.testa_chamado import TestaChamado
 import pandas as pd
 
-class CapturaFormulario:
+class CapturaChamado:
+    """
+    Captura os dados do chamado correspondente separando as linhas do formulario
+    return: DataFrame com os dados do chamado
+    """
     def __init__(self,dados):
         self.df = dados
         # print(self.df)
