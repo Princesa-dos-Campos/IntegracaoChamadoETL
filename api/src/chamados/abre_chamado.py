@@ -19,15 +19,16 @@ class AbreChamado():
         self.integracao_wtmh()
 
     def integracao_wtmh(self):
+        # print(self.df['fornecedor'])
         try:
             tam = len(self.df)-1
             while tam >=0:
-                mensagem = "Dados: "+self.df['dados'][tam]
+                # print(self.df['fornecedor'][tam])
+                mensagem = "Cód.Fornecedor: "+self.df['fornecedor'][tam]+" Código: "+self.df['codigo'][tam]+" Nome da Agência(Vendedor): "+self.df['agencia_vendedor'][tam]+" Razão Social: "+self.df['razao_social'][tam]+" CNPJ: "+self.df['cnpj'][tam]+" Ano: "+self.df['ano'][tam]+" Valor NF: "+self.df['valor_nf'][tam]+" Data Vencimento: "+self.df['data_pgmt'][tam]+" Natureza: "+self.df['natureza'][tam]+" Email: "+self.df['email'][tam]
                 body = {
                     "tipo_chamado": "CR.054 - Conferencia de ficha de remessa",
                     "empresa_relacionada": "EPC-ADM-MATRIZ-PR",
-                    "requerente": self.df['email'][tam],
-                    "titulo": "Dados do Formulario",
+                    "titulo": "Data de Vencimento: "+self.df['data_pgmt'][tam],
                     "mensagem": mensagem
                 }
                 body = json.dumps(body)
@@ -35,7 +36,6 @@ class AbreChamado():
                 retorno = resp.json()
                 print(retorno)
                 Log()
-                # chamado_novo = str(retorno['numero'])
                 tam-=1
         except Exception as e:
             print("Erro ao abrir o chamado...", e)

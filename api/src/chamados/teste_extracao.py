@@ -1,5 +1,6 @@
 import pandas as pd
-import numpy as np
+from chamados.abre_chamado import AbreChamado
+
 #extrai dados do formulario por valor de coluna
 
 class TesteExtracao():
@@ -34,6 +35,8 @@ class TesteExtracao():
                 lista.append([empresa, fornecedor, codigo, agencia, razao, cnpj, ano, nf, data, natureza, email, custo, servico])
             formulario = pd.DataFrame(lista, columns=["empresa", "fornecedor", "codigo", "agencia_vendedor", "razao_social", "cnpj", "ano", "valor_nf", "data_pgmt", "natureza", "email",
                                                       "custo", "servico"])
-            print(formulario)
+            # print(formulario)
+            # TestaChamado(formulario)
+            AbreChamado(formulario)
         except Exception as e:
             print("Erro na extração do formulario...", e)

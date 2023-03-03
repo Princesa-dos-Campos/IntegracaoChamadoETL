@@ -33,14 +33,12 @@ class TestaChamado:
                     'numero': self.df['chamado'][tam],
                     'mensagem': mensagem
                 }
-                # print(mensagem)
                 body = json.dumps(body)
                 tam-=1
                 resp = req.put(url = self.endpoint,headers=self.headers,data = body,auth = HTTPBasicAuth(self.username, self.pwd))
                 retorno = resp.json()
                 print(retorno)
             TesteExtracao(self.df)
-            # AbreChamado(self.df)
         except Exception as e:
             print('dados invalidos...',e)
             mensagem = "Dados inválidos"
